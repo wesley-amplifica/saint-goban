@@ -129,4 +129,16 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   }
+
+  // FAQ
+  // Seleciona todos os checkboxes filhos de #faq
+  var checkboxes = document.querySelectorAll('#faq input[type=checkbox]');
+  // Remove o atributo checked de todos os checkboxes, exceto o primeiro
+  for (var i = 1; i < checkboxes.length; i++) {
+    checkboxes[i].checked = false;
+  }
+  // Garante que o primeiro checkbox esteja selecionado
+  if (checkboxes.length > 0) {
+    checkboxes[0].checked = true;
+  }
 });
