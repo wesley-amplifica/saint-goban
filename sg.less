@@ -861,6 +861,10 @@ hr.sep {
       margin: 0;
       .trans;
     }
+
+    @media (max-width: 768px) {
+      font-size: 1.1rem;
+    }
   }
 }
 
@@ -1055,6 +1059,16 @@ hr.sep {
 }
 
 // GERAL PAGINAS
+
+article.mercados {
+  padding: 0;
+
+  @media (max-width: 768px) {
+    > .container {
+      padding: 0;
+    }
+  }
+}
 
 .amp-page {
   display: flex;
