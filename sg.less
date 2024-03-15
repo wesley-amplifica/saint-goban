@@ -1063,7 +1063,7 @@ hr.sep {
 article.mercados {
   padding: 0;
 
-  @media (max-width: 768px) {
+  @media (min-width: 768px) {
     > .container {
       padding: 0;
     }
@@ -1101,6 +1101,10 @@ article.mercados {
   }
   h2 {
     color: var(--sg-azul);
+
+    @media (max-width: 767px) {
+      font-size: 3rem;
+    }
   }
   p,
   ul,
