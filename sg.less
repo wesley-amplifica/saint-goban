@@ -184,6 +184,27 @@ html {
 .bg-cinza {
   background-color: var(--cinza) !important;
 }
+.bd-azul {
+  border-color: var(--sg-azul) !important;
+}
+.bd-ciano {
+  border-color: var(--sg-ciano) !important;
+}
+.bd-turquesa {
+  border-color: var(--sg-turquesa) !important;
+}
+.bd-laranja {
+  border-color: var(--sg-laranja) !important;
+}
+.bd-vermelho {
+  border-color: var(--sg-vermelho) !important;
+}
+.bd-preto {
+  border-color: var(--sg-preto) !important;
+}
+.bd-branco {
+  border-color: var(--sg-branco) !important;
+}
 
 .filtro-branco {
   filter: invert() hue-rotate(180deg) brightness(2);
@@ -644,6 +665,9 @@ a {
 .align-center {
   align-items: center;
 }
+.justify-center {
+  justify-content: center;
+}
 
 .full-h {
   height: 100%;
@@ -739,6 +763,10 @@ a {
 
   @media (max-width: 991px) {
     .p20;
+  }
+
+  &.bordered {
+    border: 2px solid var(--bg);
   }
 }
 
