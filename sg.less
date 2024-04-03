@@ -1,3 +1,12 @@
+// PROVISORIO
+article[data-history-node-id="175"],
+article[data-history-node-id="176"],
+article[data-history-node-id="177"],
+article[data-history-node-id="178"],
+article[data-history-node-id="179"] {
+  display: none !important;
+}
+
 // EDITOR
 .messages--errorx {
   display: none;
@@ -856,6 +865,18 @@ hr.sep {
 
       &:before {
         opacity: 0.75;
+      }
+    }
+
+    &.no-img {
+      background-image: linear-gradient(
+        45deg,
+        var(--sg-azul) 40%,
+        var(--sg-ciano)
+      );
+
+      &:before {
+        display: none;
       }
     }
   }
