@@ -45,9 +45,9 @@ const openNewTab = function (url) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  // Função para alternar os radios
-  function radioSlideshowAutoplay() {
-    var slideshowRadios = document.querySelectorAll('.radio-slideshow input[type="radio"]');
+  // Função para alternar os radios dentro de cada instância
+  function radioSlideshowAutoplay(slideshow) {
+    var slideshowRadios = slideshow.querySelectorAll('input[type="radio"]');
 
     if (slideshowRadios.length > 0) {
       var currentCheckedIndex = -1;
@@ -68,20 +68,28 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  // Inicializa o intervalo
-  var intervalId = setInterval(radioSlideshowAutoplay, 5000);
+  // Inicializa o intervalo para cada instância
+  var slideshowInstances = document.querySelectorAll('.radio-slideshow');
+  slideshowInstances.forEach(function (slideshow) {
+    var intervalId = setInterval(function () {
+      radioSlideshowAutoplay(slideshow);
+    }, 5000);
 
-  // Função para reiniciar o intervalo
-  function restartInterval() {
-    clearInterval(intervalId);
-    intervalId = setInterval(radioSlideshowAutoplay, 5000);
-  }
+    // Função para reiniciar o intervalo para cada instância
+    function restartInterval() {
+      clearInterval(intervalId);
+      intervalId = setInterval(function () {
+        radioSlideshowAutoplay(slideshow);
+      }, 5000);
+    }
 
-  // Adiciona o evento de clique para reiniciar o intervalo
-  var slideshowRadios = document.querySelectorAll('.radio-slideshow input[type="radio"]');
-  for (var i = 0; i < slideshowRadios.length; i++) {
-    slideshowRadios[i].addEventListener('click', restartInterval);
-  }
+    // Adiciona o evento de clique para reiniciar o intervalo para cada instância
+    var slideshowRadios = slideshow.querySelectorAll('input[type="radio"]');
+    slideshowRadios.forEach(function (radio) {
+      radio.addEventListener('click', restartInterval);
+    });
+  });
+
 
   $('#catalogo #form-wrapper').load(formUrl + ' ' + formId, function () {
     $('#catalogo #edit-captcha').remove();
