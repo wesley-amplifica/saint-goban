@@ -48,18 +48,24 @@ document.addEventListener('DOMContentLoaded', function () {
   // Função para alternar os radios
   function radioSlideshowAutoplay() {
     var slideshowRadios = document.querySelectorAll('.radio-slideshow input[type="radio"]');
-    var currentCheckedIndex = -1;
 
-    for (var i = 0; i < slideshowRadios.length; i++) {
-      if (slideshowRadios[i].checked) {
-        currentCheckedIndex = i;
-        break;
+    if (slideshowRadios.length > 0) {
+      var currentCheckedIndex = -1;
+
+      for (var i = 0; i < slideshowRadios.length; i++) {
+        if (slideshowRadios[i].checked) {
+          currentCheckedIndex = i;
+          break;
+        }
+      }
+
+      if (currentCheckedIndex !== -1) {
+        slideshowRadios[currentCheckedIndex].checked = false;
+        slideshowRadios[(currentCheckedIndex + 1) % slideshowRadios.length].checked = true;
+      } else {
+        slideshowRadios[0].checked = true;
       }
     }
-
-    slideshowRadios[currentCheckedIndex].checked = false;
-    var nextIndex = (currentCheckedIndex + 1) % slideshowRadios.length;
-    slideshowRadios[nextIndex].checked = true;
   }
 
   // Inicializa o intervalo
