@@ -40,17 +40,44 @@ const openNewTab = function (url) {
   element.setAttribute('target', '_blank');
   element.style.display = 'none';
   document.body.appendChild(element);
+
+  // Variável para verificar se a guia foi aberta com sucesso
+  let tabOpened = false;
+
+  // Adicionar evento de escuta para verificar se a guia foi aberta
+  const tabListener = () => {
+    tabOpened = true;
+    cleanup();
+  };
+
+  // Adicionar evento de escuta para verificar se houve algum erro ao abrir a guia
+  const errorListener = () => {
+    tabOpened = false;
+    cleanup();
+  };
+
+  // Adicionar eventos
+  element.addEventListener('click', tabListener);
+  element.addEventListener('error', errorListener);
+
+  // Simular o clique para abrir a guia
   element.click();
 
-  setTimeout(() => {
-    if (!element.parentNode) {
-      // Se o elemento não estiver mais no DOM, significa que a guia foi bloqueada
-      window.location.href = url;
+  // Função para limpar eventos e remover elemento do DOM
+  const cleanup = () => {
+    document.body.removeChild(element);
+    element.removeEventListener('click', tabListener);
+    element.removeEventListener('error', errorListener);
+
+    // Verificar se a guia foi aberta com sucesso ou redirecionar se houve erro
+    if (tabOpened) {
+      console.log('A guia foi aberta com sucesso!');
+      // Coloque aqui o código que deseja executar após a guia ser aberta
     } else {
-      // Se o elemento ainda estiver no DOM, a guia foi aberta com sucesso
-      document.body.removeChild(element);
+      console.error('Erro ao abrir a guia:', url);
+      window.location.href = url;
     }
-  }, 100);
+  };
 };
 
 document.addEventListener('DOMContentLoaded', function () {
