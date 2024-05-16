@@ -42,6 +42,7 @@ const openNewTab = function (url) {
   document.body.appendChild(element);
   element.click();
   document.body.removeChild(element);
+  window.location.href = url;
 }
 
 document.addEventListener('DOMContentLoaded', function () {
