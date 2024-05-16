@@ -34,16 +34,24 @@ const GoogleDriveLink2Download = {
   }
 };
 
-const openNewTab = function (url) {
+const openNewTabOrRedirect = function (url) {
   let element = document.createElement('a');
   element.setAttribute('href', url);
   element.setAttribute('target', '_blank');
   element.style.display = 'none';
   document.body.appendChild(element);
   element.click();
-  document.body.removeChild(element);
-  window.location.href = url;
-}
+
+  setTimeout(() => {
+    if (!element.parentNode) {
+      // Se o elemento não estiver mais no DOM, significa que a guia foi bloqueada
+      window.location.href = url;
+    } else {
+      // Se o elemento ainda estiver no DOM, a guia foi aberta com sucesso
+      document.body.removeChild(element);
+    }
+  }, 100);
+};
 
 document.addEventListener('DOMContentLoaded', function () {
   // Função para alternar os radios dentro de cada instância
@@ -106,6 +114,7 @@ document.addEventListener('DOMContentLoaded', function () {
         url: $(this).attr('action'),
         data: formData,
         success: function (response) {
+          window.location.href = url;
           console.log(response);
           if (typeof ctaLink !== 'undefined') {
             var downloadLink = GoogleDriveLink2Download.convert(ctaLink);
