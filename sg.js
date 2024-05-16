@@ -114,7 +114,6 @@ document.addEventListener('DOMContentLoaded', function () {
         url: $(this).attr('action'),
         data: formData,
         success: function (response) {
-          window.location.href = url;
           console.log(response);
           if (typeof ctaLink !== 'undefined') {
             var downloadLink = GoogleDriveLink2Download.convert(ctaLink);
