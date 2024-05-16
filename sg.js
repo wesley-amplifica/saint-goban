@@ -35,6 +35,7 @@ const GoogleDriveLink2Download = {
 };
 
 const openNewTab = function (url) {
+
   let element = document.createElement('a');
   element.setAttribute('href', url);
   element.setAttribute('target', '_blank');
@@ -145,8 +146,9 @@ document.addEventListener('DOMContentLoaded', function () {
           console.log(response);
           if (typeof ctaLink !== 'undefined') {
             var downloadLink = GoogleDriveLink2Download.convert(ctaLink);
-            openNewTab(downloadLink);
+            // openNewTab(downloadLink);
             alert('Agradecemos o seu interesse neste material!');
+            window.location.href = downloadLink;
           } else {
             alert('Mensagem enviada com sucesso!');
           }
