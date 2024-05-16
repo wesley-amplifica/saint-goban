@@ -44,6 +44,22 @@ const openNewTab = function (url) {
   // Variável para verificar se a guia foi aberta com sucesso
   let tabOpened = false;
 
+  // Função para limpar eventos e remover elemento do DOM
+  const cleanup = () => {
+    document.body.removeChild(element);
+    element.removeEventListener('click', tabListener);
+    element.removeEventListener('error', errorListener);
+
+    // Verificar se a guia foi aberta com sucesso ou redirecionar se houve erro
+    if (tabOpened) {
+      console.log('A guia foi aberta com sucesso!');
+      // Coloque aqui o código que deseja executar após a guia ser aberta
+    } else {
+      console.error('Erro ao abrir a guia:', url);
+      window.location.href = url;
+    }
+  };
+
   // Adicionar evento de escuta para verificar se a guia foi aberta
   const tabListener = () => {
     tabOpened = true;
@@ -62,23 +78,8 @@ const openNewTab = function (url) {
 
   // Simular o clique para abrir a guia
   element.click();
-
-  // Função para limpar eventos e remover elemento do DOM
-  const cleanup = () => {
-    document.body.removeChild(element);
-    element.removeEventListener('click', tabListener);
-    element.removeEventListener('error', errorListener);
-
-    // Verificar se a guia foi aberta com sucesso ou redirecionar se houve erro
-    if (tabOpened) {
-      console.log('A guia foi aberta com sucesso!');
-      // Coloque aqui o código que deseja executar após a guia ser aberta
-    } else {
-      console.error('Erro ao abrir a guia:', url);
-      window.location.href = url;
-    }
-  };
 };
+
 
 document.addEventListener('DOMContentLoaded', function () {
   // Função para alternar os radios dentro de cada instância
