@@ -34,7 +34,7 @@ const GoogleDriveLink2Download = {
   }
 };
 
-const openNewTabOrRedirect = function (url) {
+const openNewTab = function (url) {
   let element = document.createElement('a');
   element.setAttribute('href', url);
   element.setAttribute('target', '_blank');
